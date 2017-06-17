@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<table>
+	<tr>
+		<td><p th:text="'Nome: ' + ${opera.titolo}" /></td>
+	</tr>
+	<tr>
+		<td><p th:text="'Dimensione: ' + ${opera.dimensione}" /></td>
+	</tr>
+	<tr>
+		<td><p th:text="'Tecnica: ' + ${opera.tecnica}" /></td>
+	</tr>
+	<tr>
+		<td><p th:text="'Anno: ' + ${opera.anno}" /></td>
+	</tr>
+	<tr>
+		<td><p th:text="'Nome autore: ' + ${opera.autore.nomeAutore}" /></td>
+	</tr>
+	<tr>
+		<td><p th:text="'Nome stanza: ' + ${opera.stanza.nome}" /></td>
+	</tr>
+	<tr>
+		<td><p th:text="'Larghezza quadro: ' + ${opera.larghezza}" /></td>
+	</tr>
+	<tr>
+		<td><p th:text="'Lunghezza quadro: ' + ${opera.larghezza}" /></td>
+	</tr>
+</table>
+<table>
+	<tr>
+		<td><p th:text="'Immagine:'" /></td>
+	</tr>
+	<tr><td><img th:src="@{${opera.urlImmagine}}" alt="Immagine Opera"
+			style="height: 500px; width: 500px" /></td>
+	</tr>
+</table>
+</body>
+</html>

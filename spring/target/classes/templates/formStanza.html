@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Nuova stanza</title>
+
+<style type="text/css">
+
+div.form{
+    display: block;
+    text-align: center;
+    padding-top: 50px;
+}
+
+div.buttons{
+    display: inline-block;
+    text-align: center;
+    padding-top: 50px;
+    padding-left: 100px;
+}
+
+
+form{
+
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+    text-align: left;
+}
+
+h2{
+
+    background-color: green;
+    color : white;
+    margin-right: 250px;
+    margin-left: 250px;
+    font-family: sans-serif;
+
+
+}
+
+
+span{
+    color: white;
+    font-family: sans-serif;
+	text-transform: uppercase;
+}
+
+body { 
+    width: 100%;
+    height:100%;
+    font-family: 'Open Sans', sans-serif;
+    background: #092756;
+    background: -moz-radial-gradient(0% 100%, ellipse cover, rgba(104,128,138,.4) 10%,rgba(138,114,76,0) 40%),-moz-linear-gradient(top,  rgba(57,173,219,.25) 0%, rgba(42,60,87,.4) 100%), -moz-linear-gradient(-45deg,  #670d10 0%, #092756 100%);
+    background: -webkit-radial-gradient(0% 100%, ellipse cover, rgba(104,128,138,.4) 10%,rgba(138,114,76,0) 40%), -webkit-linear-gradient(top,  rgba(57,173,219,.25) 0%,rgba(42,60,87,.4) 100%), -webkit-linear-gradient(-45deg,  #670d10 0%,#092756 100%);
+    background: -o-radial-gradient(0% 100%, ellipse cover, rgba(104,128,138,.4) 10%,rgba(138,114,76,0) 40%), -o-linear-gradient(top,  rgba(57,173,219,.25) 0%,rgba(42,60,87,.4) 100%), -o-linear-gradient(-45deg,  #670d10 0%,#092756 100%);
+    background: -ms-radial-gradient(0% 100%, ellipse cover, rgba(104,128,138,.4) 10%,rgba(138,114,76,0) 40%), -ms-linear-gradient(top,  rgba(57,173,219,.25) 0%,rgba(42,60,87,.4) 100%), -ms-linear-gradient(-45deg,  #670d10 0%,#092756 100%);
+    background: -webkit-radial-gradient(0% 100%, ellipse cover, rgba(104,128,138,.4) 10%,rgba(138,114,76,0) 40%), linear-gradient(to bottom,  rgba(57,173,219,.25) 0%,rgba(42,60,87,.4) 100%), linear-gradient(135deg,  #670d10 0%,#092756 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3E1D6D', endColorstr='#092756',GradientType=1 );
+}
+
+html { width: 100%; height:100%; overflow:hidden; }
+
+
+.sentbutton{
+    border: solid medium forestgreen;
+    background-color: #32CD32;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#e9ede8), to(#32CD32),color-stop(0.4, #008800));
+    color: white;
+   
+    
+}
+
+.resetbutton{
+    border: solid medium #882d13;
+    background-color: #ce401c;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#e9ede8), to(#ce401c),color-stop(0.4, #8c1b0b));
+    color: white;
+    
+}
+
+
+</style>
+</head>
+<body>
+        <div class="form">
+        <h2> Inserisci una nuova stanza </h2>
+	    <form action="#" th:action="@{/addStanza}" th:object="${stanza}" method="post">
+	    <table>
+            <tr>
+                <td>
+                    <span th:text="#{label.nome}">Nome: </span>
+                    <span><input type="text" th:field="*{nomeStanza}" /></span>
+                    <span th:if="${#fields.hasErrors('nomeStanza')}" th:text="#{label.mandatory}">Error</span>
+                </td>
+            </tr>
+        </table>
+        <div class="buttons">
+        <table>
+            <tr>
+                    <td><span><button class="sentbutton" type="submit">Invia</button></span></td>
+                    <td><span><button class="resetbutton" type="reset">Reset</button></span></td>
+            </tr>
+        </table>
+        </div>
+        </form>
+        </div>
+</body>
+</html>

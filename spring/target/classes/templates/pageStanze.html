@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1"/>
+<title>Stanze della galleria</title>
+</head>
+<p>Visita le nostre stanze</p>
+<body>
+<table>
+	<th:foreach th:each="stanza: ${stanze}">
+		<tr><td><h2>
+			<a th:text="${stanza.nomeStanza}" th:href="@{/mostraStanza?(id=${stanza.id})}"></a>
+		</h2></td></tr>
+	</th:foreach>
+</table>
+
+<table>
+<tr><td><a href ="/addStanza">Crea nuova stanza</a></td></tr>
+
+</table>
+	
+
+</body>
+</html>

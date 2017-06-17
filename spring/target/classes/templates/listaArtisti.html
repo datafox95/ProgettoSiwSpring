@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>I nostri artisti</title></head>
+<body>
+	<table>
+		<th:foreach th:each="artista: ${artisti}">
+			<tr><td><a th:text="${artista.nome + ' ' + artista.cognome}"
+				th:href="@{/mostraAutore?(id=${artista.id})}"></a></td></tr>
+		</th:foreach>
+	</table>
+
+
+
+</body>
+</html>
