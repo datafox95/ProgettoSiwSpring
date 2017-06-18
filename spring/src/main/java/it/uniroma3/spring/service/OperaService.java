@@ -1,5 +1,6 @@
 package it.uniroma3.spring.service;
 
+import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,11 @@ import it.uniroma3.spring.repository.OperaRepository;
 public class OperaService {
 	
 	@Autowired
+	private EntityManager em;
+	
+	@Autowired
 	private OperaRepository operaRepo;
+	
 	
 	@Transactional
 	public void add(final Opera opera){
@@ -27,10 +32,7 @@ public class OperaService {
 		return this.operaRepo.findOne(id);
 	}
 
-	public void delete(Long id) {
-		this.operaRepo.delete(id);
-
-	}
+	
 	
 	
 	

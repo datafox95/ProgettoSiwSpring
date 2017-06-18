@@ -43,23 +43,12 @@ public class OperaController {
 	
 	//-------------//
 	
-	
-	public String showOpera(Model model ,@RequestParam("id") Long id ){
-		Opera opera = operaService.findbyId(id);
-		model.addAttribute("opera", opera);
-		if(opera.getStanza()==null){
-			model.addAttribute("nomeStanza","L'opera non è esposta.");
-		}
-		else{
-			model.addAttribute("nomeStanza",opera.getStanza().getNomeStanza());
-		}
-		return "mostraOpera";
-	}
-	
-	//-------------//
+
 	
 	@GetMapping("/addOpera")
 	public String showForm(Model model, Opera opera){
+		List<Artista> artisti = (List<Artista>)artistaService.findAll();
+		model.addAttribute("artisti", artisti);
 		List<Stanza> stanze = (List<Stanza>) stanzaService.findAll();
 		model.addAttribute("stanze", stanze);
 		return "formOpera";
@@ -70,16 +59,15 @@ public class OperaController {
 	
 	@PostMapping("/addOpera")
 	public String checkOpera(@Valid @ModelAttribute Opera opera, 
-			BindingResult bindingResult, Model model , @RequestParam("nome") String nomeArtista) {
+			BindingResult bindingResult, Model model , @RequestParam("artista") Artista artista) {
 
 		List<Stanza> stanze = (List<Stanza>) stanzaService.findAll();
 		model.addAttribute("stanze", stanze);
 
-		if (bindingResult.hasErrors() || artistaService.findByNome(nomeArtista.toUpperCase())==null ) {
+		if (bindingResult.hasErrors() || artistaService.findbyId(artista.getId())== null ) {
 			return "formOpera";
 		}
 		else {
-			Artista artista = artistaService.findByNome(nomeArtista.toUpperCase());
 			opera.setArtista(artista);
 			artista.getOpere().add(opera);
 			model.addAttribute(artista);

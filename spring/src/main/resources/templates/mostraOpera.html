@@ -1,12 +1,13 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title> Opera </title>
+</head>
 <body>
 <table>
 	<tr>
 		<td><p th:text="'Nome: ' + ${opera.titolo}" /></td>
-	</tr>
-	<tr>
-		<td><p th:text="'Dimensione: ' + ${opera.dimensione}" /></td>
 	</tr>
 	<tr>
 		<td><p th:text="'Tecnica: ' + ${opera.tecnica}" /></td>
@@ -15,10 +16,10 @@
 		<td><p th:text="'Anno: ' + ${opera.anno}" /></td>
 	</tr>
 	<tr>
-		<td><p th:text="'Nome autore: ' + ${opera.autore.nomeAutore}" /></td>
+		<td><p th:text="'Nome autore: ' + ${opera.artista.cognome}" /></td>
 	</tr>
 	<tr>
-		<td><p th:text="'Nome stanza: ' + ${opera.stanza.nome}" /></td>
+		<td><p th:text="'Nome stanza: ' + ${opera.stanza.nomeStanza}" /></td>
 	</tr>
 	<tr>
 		<td><p th:text="'Larghezza quadro: ' + ${opera.larghezza}" /></td>

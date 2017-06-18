@@ -86,7 +86,7 @@ html { width: 100%; height:100%; overflow:hidden; }
         <h2>Inserisci una nuova opera</h2>
         <form action="#" th:action="@{/addOpera}" th:object="${opera}"  method="post">
         <table>
-         	<tr>
+        	<tr>
 				<td><span th:text="#{label.stanza}">Stanza:</span></td>
 				<td>
 					<select th:field="*{stanza}">
@@ -95,8 +95,6 @@ html { width: 100%; height:100%; overflow:hidden; }
 					</select>
 				</td>
 			</tr>
-		</table>
-        <table>
             <tr>
                     <td><span th:text="#{label.titolo}">Titolo: </span></td>
                     <td><span><input type="text" th:field="*{titolo}" /></span></td>
@@ -123,8 +121,12 @@ html { width: 100%; height:100%; overflow:hidden; }
                     <td><span th:if="${#fields.hasErrors('anno')}" th:text="#{label.number}">Error</span></td>
             </tr>
             <tr>
-				<td><span th:text="#{label.artista}">Autore: </span></td>
-				<td><span><input type="text" name="nomeAutore" /></span></td>
+				<td><span th:text="#{label.artista}">Artista:</span></td>
+				<td>
+					<select th:field="*{artista}">
+					<option th:each="artista : ${artisti}" th:value="${artista.id}" th:text="${artista.cognome}"></option>
+					</select>
+				</td>
 			</tr>
             <tr>
                     <td><span th:text="#{label.urlImmagine}">Url Immagine: </span></td>
