@@ -11,26 +11,38 @@ import it.uniroma3.spring.repository.ArtistaRepository;
 @Service
 public class ArtistaService {
 	
+	//Dipendenze
 	@Autowired
 	private ArtistaRepository artistaRepo;
 	
+	
+	/*
+	 * Operazioni*/
+	
+	//itera su tutti gli artisti e ritorna una lista
 	 public Iterable<Artista> findAll() {
 	        return this.artistaRepo.findAll();
 	    }
 	
+	 
+	 
+	//salva un artista
 	@Transactional
     public void add(final Artista customer) {
         this.artistaRepo.save(customer);
     }
 	
+	//ricerca un artista tramite l'id e lo restituisce
 	public Artista findbyId(Long id) {
 		return this.artistaRepo.findOne(id);
 	}
 	
+	//ricerca un artista tramite nome e lo restituisce
 	public Artista findByNome(String nome){
 		return this.artistaRepo.findByNome(nome);
 	}
 	
+	//cancella un artista
 	public void delete(Long id) {
 		this.artistaRepo.delete(id);
 

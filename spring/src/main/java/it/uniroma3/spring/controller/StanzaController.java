@@ -20,18 +20,24 @@ import it.uniroma3.spring.service.StanzaService;
 @Controller
 public class StanzaController {
 	
-	
+	//Dipendenze
 	@Autowired
 	private StanzaService stanzaService;
 	
+	
+	//--------------//
+	
+	//Mostra la pagina relativa alle stanze della galleria e alla loro gestione
 	@GetMapping("/stanze")
-	public String showMenuStanze(Model model){
+	public String showStanze(Model model){
 		List<Stanza> stanze = (List<Stanza>) stanzaService.findAll();
 		model.addAttribute("stanze", stanze);
 		return "pageStanze";
 	}
 	
 	//-------------//
+	
+	//Mostra i dati relativi ad una stanza della galleria con le opere che sono esposte in quella stanza
 	
 	@GetMapping("/mostraStanza")
 	public String showStanza(@RequestParam("id")long id, Model model){
@@ -45,6 +51,7 @@ public class StanzaController {
 	
 	//-------------//
 	
+	//Mostra la form per l'inserimento di una nuova stanza
 	
 	@GetMapping("/addStanza")
 	public String showForm(Stanza stanza) {
@@ -54,7 +61,7 @@ public class StanzaController {
 	
 	//-------------//
 	
-	
+	//Verifica la correttezza dei dati inseriti relativi alla stanza e mostrai dati relativi
 	@PostMapping("/addStanza")
 	public String checkArtistaInfo(@Valid @ModelAttribute Stanza stanza, BindingResult bindingResult, Model model) {
 		if (bindingResult.hasErrors()) {
@@ -69,6 +76,9 @@ public class StanzaController {
 	
 	
 	//--------//
+	
+	//Consente di ritornare alla pagina delle stanze
+	
 	@GetMapping("/pageStanze")
 	public String showPage(){
 		return "pageStanze";

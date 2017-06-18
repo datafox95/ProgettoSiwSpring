@@ -22,20 +22,22 @@ import org.springframework.web.bind.annotation.RequestParam;
 import it.uniroma3.spring.model.Artista;
 import it.uniroma3.spring.model.Opera;
 import it.uniroma3.spring.service.ArtistaService;
-import it.uniroma3.spring.service.OperaService;
 
 @Controller
 public class ArtistaController {
-
+	
+	//Dipendenze 
 	@Autowired
 	private ArtistaService artistaService;
 	
-	@Autowired
-	private OperaService operaService;
+	
+	
 	
 	//--------------//
 
-
+    
+	//Controllo del formato di una qualsiasi data
+	
 	@InitBinder
 	public void dataBinding(WebDataBinder binder) {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
@@ -46,6 +48,8 @@ public class ArtistaController {
 	
 	//--------------//
 
+	
+	//Mostra la pagina relativa agli artisti con le operazioni di gestione
 
 	@GetMapping(value = {"/artisti" , "/pageArtisti"})
 	public String showPage(Model model) {
@@ -56,12 +60,16 @@ public class ArtistaController {
 
 	//--------------//
 	
+	//Mostra la form per l'inserimento di un nuovo artista
+	
 	@GetMapping("/addArtista")
 	public String showForm(Artista artista){
 		return "formArtista";
 	}
 	
 	//--------------//
+	
+	//Verifica la correttezza della form e mostra la pagina relativa ai dati inseriti 
 	
 	@PostMapping("/addArtista")
 	public String checkArtista(@Valid @ModelAttribute Artista artista, 
@@ -92,6 +100,7 @@ public class ArtistaController {
 	//--------------//
 
 
+	//Mostra i dati relativi ad un autore identificato da un certo id e le sue relative opere
 	
 	@GetMapping("/mostraAutore")
 	public String showAutore(@RequestParam("id")long id, Model model){
@@ -105,6 +114,8 @@ public class ArtistaController {
 	
 	//--------------//
 	
+	//Mostra la pagina per la cancellazione di artisti visualizzandoli
+	
 	@GetMapping("/cancellaArtisti")
 	public String rimuoviArtista(Model model){
 		List<Artista> artisti = (List<Artista>)artistaService.findAll();
@@ -112,7 +123,10 @@ public class ArtistaController {
 		return "artistiRimovibili";
 	}
 	
-	//--------//
+	//--------------//
+	
+	//Consente la cancellazione di un artista mostrando la pagina relativa alla cancellazione
+	
 	@GetMapping("/cancellaArtista")
 	public String rimuoviArtista(Model model, @RequestParam("id") Long id){
 		artistaService.delete(id);

@@ -18,22 +18,23 @@ public class Utente {
 	
 	@NotNull
 	@Size(min=5)
-	private String username;
+	private String username; //username dell'utente
 	
 	@NotNull
 	@Size(min=1)
-	private String password;
+	private String password; //password dell'utente
 	
 	
-	
+	/*costruttore vuoto*/
 	public Utente (){}
 	
+	/*costruttore*/
 	public Utente(String username, String password){
 		this.username = username;
 		this.password = password;
 	}
 	
-	
+	/*Getters and setters*/
 	public Long getId() {
 		return id;
 	}

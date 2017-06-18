@@ -23,15 +23,18 @@ import it.uniroma3.spring.service.StanzaService;
 @Controller
 public class OperaController {
 	
+	//Dipendenze
 	@Autowired
 	private ArtistaService artistaService;
-	
 	@Autowired
 	private OperaService operaService; 
-	
 	@Autowired
 	private StanzaService stanzaService; 
 	
+	
+	//--------------//
+	
+	//Mostra la pagina relativa alle opere; la pagina mostra le opere inseritee le operazioni di gestione
 	
 	@GetMapping(value={"/opere", "/pageOpere"})
 	public String showOpere(Model model){
@@ -41,9 +44,10 @@ public class OperaController {
 		
 	}
 	
-	//-------------//
+	//--------------//
 	
 
+	//Mostra  la form per l'inserimento di una nuova opera
 	
 	@GetMapping("/addOpera")
 	public String showForm(Model model, Opera opera){
@@ -56,6 +60,8 @@ public class OperaController {
 	
 	
 	//-------------//
+	
+	//Verifica la correttezza della form e mostra la pagina con i relativi dati
 	
 	@PostMapping("/addOpera")
 	public String checkOpera(@Valid @ModelAttribute Opera opera, 
@@ -73,7 +79,7 @@ public class OperaController {
 			model.addAttribute(artista);
 			model.addAttribute(opera);
 			if(opera.getStanza()==null){
-				model.addAttribute("nomeStanza","L'opera non è esposta.");
+				model.addAttribute("nomeStanza","Opera non esposta."); //problema relativo alla mancanza di una stanza (bug)
 			}
 			else{
 				model.addAttribute("nomeStanza",opera.getStanza().getNomeStanza());
@@ -83,6 +89,10 @@ public class OperaController {
 		}
 		return "mostraOpera";
 	}
+	
+	//--------------//
+	
+	//Mostra i dati relativi ad una opera identificata dal proprio id
 	
 	@GetMapping("/mostraOpera")
 	public String showOpera(Model model ,@RequestParam("id") Long id ){

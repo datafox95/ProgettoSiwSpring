@@ -19,6 +19,7 @@ import it.uniroma3.spring.service.UtenteService;
 @Controller
 public class MainController {
 
+	//Dipendenze
 	@Autowired
 	private RuoloUtenteService rus;
 
@@ -26,24 +27,25 @@ public class MainController {
 	private UtenteService us;
 
 	
-	@RequestMapping(value="/403")
-	public String Error403(){
-		return "Error403";
-	}
-
+	//--------------//
+	
+	//Mostra la pagina di login
 	@RequestMapping(value="/login")
 	public String login(){
 		return "login"; //
 	}
 	
+	//--------------//
 	
+	//Mostra la form per l'inserimento di un nuovo utente
 	@GetMapping("/register")
 	public String showForm(Utente utente){
 		return "form";
 	}
 	
+	//--------------//
 	
-
+	//Verifica la correttezza dei dati del nuovo utente e mostra la pagina con i dati ineriti dall'utente
 	@PostMapping("/register")
 	public String signUp(@Valid @ModelAttribute Utente utente, 
 			BindingResult bindingResult, Model model){

@@ -8,6 +8,6 @@ import it.uniroma3.spring.model.Utente;
 
 public interface UtenteRepo extends CrudRepository<Utente, Long>{
 	
-	List<Utente> findByUsername(String username);
+	List<Utente> findByUsername(String username); //ricerca utente per username
 
 }

@@ -24,38 +24,39 @@ public class Opera {
 	
 	@NotNull
 	@Size(min=1)
-	private String titolo;
+	private String titolo; //nome dell'opera
 	
 	@NotNull
 	@Size(min=1)
-	private String tecnica;
+	private String tecnica; //tecnica di realizzazione dell'opera
 	
 	@NotNull
-	private Integer lunghezza;
+	private Integer lunghezza; //lunghezza del dipinto 
 	
 	@NotNull
-	private Integer larghezza;
+	private Integer larghezza; //larghezza del dipinto
 	
 	@NotNull
 	@Min(1)
-	private Integer anno;
+	private Integer anno; //anno di realizzazione dell'opera
 	
+	//politica di cascade: ogni operazione sull'opera aggiorna lo stato dell'artista
 	@NotNull
 	@ManyToOne(cascade = CascadeType.MERGE)
 	private Artista artista;
 	
 	@NotNull
 	@ManyToOne(optional=true)
-	private Stanza stanza;
+	private Stanza stanza; //stanza in cui l'opera è esposta
 	
 	@NotNull
-	private String UrlImmagine;
+	private String UrlImmagine; //indirizzo url dell'immagine rappresentante l'opera
 	
-	
+	/*costruttore vuoto */
 	public Opera(){}
 	
 	
-	
+	/* costruttore*/
 	public Opera(String titolo, String tecnica, Integer lunghezza, Integer larghezza, Integer anno, Artista artista, Stanza stanza, String urlImmagine) {
 		super();
 		this.titolo = titolo;
@@ -69,6 +70,8 @@ public class Opera {
 	}
 	
 
+	/*Getters and setters*/
+	
 	public Long getId() {
 		return id;
 	}
@@ -118,19 +121,13 @@ public class Opera {
 		this.stanza = stanza;
 	}
 
-
-
 	public String getUrlImmagine() {
 		return UrlImmagine;
 	}
 
-
-
 	public void setUrlImmagine(String urlImmagine) {
 		UrlImmagine = urlImmagine;
 	}
-
-
 
 	@Override
 	public String toString() {
@@ -139,25 +136,17 @@ public class Opera {
                 id, titolo, tecnica , anno);
 	}
 
-
-
 	public Integer getLunghezza() {
 		return lunghezza;
 	}
-
-
 
 	public void setLunghezza(Integer lunghezza) {
 		this.lunghezza = lunghezza;
 	}
 
-
-
 	public Integer getLarghezza() {
 		return larghezza;
 	}
-
-
 
 	public void setLarghezza(Integer larghezza) {
 		this.larghezza = larghezza;

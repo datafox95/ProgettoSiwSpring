@@ -24,13 +24,17 @@ public class Stanza {
 	
 	@NotNull
 	@Size(min=1)
-	private String nomeStanza;
+	private String nomeStanza; //nome della stanza
 	
+	//politica di cascade: ogni operazione sulla stanza aggiorna lo stato dell'opera
 	@OneToMany(mappedBy = "stanza", cascade = CascadeType.MERGE)
-	private List<Opera> opere;
+	private List<Opera> opere; //opere contenute nella stanza
 	
+	
+	/*costruttore vuoto*/
 	public Stanza(){}
 	
+	/*costruttore*/
 	public Stanza(String nomeStanza, List<Artista> artisti, List<Opera> opere) {
 		super();
 		this.nomeStanza = nomeStanza;
@@ -38,7 +42,7 @@ public class Stanza {
 	}
 	
 	
-	
+	/*Getters and setters*/
 	public Long getId() {
 		return id;
 	}

@@ -8,13 +8,13 @@ import it.uniroma3.spring.model.Artista;
 
 public interface ArtistaRepository extends CrudRepository<Artista, Long>{
 	
-	void delete(Long id);
+	void delete(Long id); //operazione di cancellazione
 	
-    Artista findByNome(String nome);
+    Artista findByNome(String nome); //ricerca un artista per nome
 
-    List<Artista> findByCognome(String cognome);
+    List<Artista> findByCognome(String cognome); //ricerca un artista per cognome
     
-    List<Artista> findByNazione(String nazione);
+    List<Artista> findByNazione(String nazione); //ricerca un artista per nazionalità
     
     
     

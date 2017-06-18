@@ -8,7 +8,9 @@ import it.uniroma3.spring.model.Stanza;
 
 public interface StanzaRepository extends CrudRepository<Stanza,Long> {
 	
-	List<Stanza> findByNomeStanza(String nomeStanza);
+	void delete(Long id); //cancellazione stanza
+	
+	List<Stanza> findByNomeStanza(String nomeStanza); //ricerca una stanza per nome
 	
 	
 

@@ -19,49 +19,49 @@ import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name = "artista")
+@Table(name = "artisti")
 public class Artista {
+	
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
-	@NotNull
-	@Size(min=1)
-	private String nome;
 	
 	@NotNull
 	@Size(min=1)
-	private String cognome;
+	private String nome; //nome dell'artista
 	
 	@NotNull
 	@Size(min=1)
-	private String nazione;
+	private String cognome; //cognome dell'artista
+	
+	@NotNull
+	@Size(min=1)
+	private String nazione; //nazionalità dell'artista
 	
 	@NotNull
 	@Past
 	@Temporal(TemporalType.DATE)
-	private Date dataNascita;
-	
+	private Date dataNascita;  //data di nascita dell'artista
 	
 	@Past
 	@Temporal(TemporalType.DATE)
-	private Date dataMorte;
+	private Date dataMorte; //data di morte dell'artista
 	
 	
-	
-	
-	
-	
-	@OneToMany(mappedBy ="artista" , cascade = CascadeType.REMOVE)
-	private List<Opera> opere;
+	//politica di cascade: se un'artista è rimosso vengono rimosse anche le sue opere
+	@OneToMany(mappedBy ="artista" , cascade = CascadeType.REMOVE) 
+	private List<Opera> opere;   //opere dell'artista;
 	
 	@ManyToOne
-	private Stanza stanza;
+	private Stanza stanza; //stanza dove sono esposte le opere dell'artista
 	
 	
+	/* costruttore vuoto */
 	public Artista(){}
 	
+	/* costruttore */
 	public Artista(String nome, String cognome, String nazione, Date dataNascita, Date dataMorte, List<Opera> opere, Stanza stanza){
 		this.nome = nome;
 		this.cognome = cognome;
@@ -72,6 +72,8 @@ public class Artista {
 		
 	}
 
+	/*Getters and setters */
+	
 	public Long getId() {
 		return id;
 	}
