@@ -101,6 +101,30 @@ public class OperaController {
 		return "mostraOpera";
 	}
 	
+	//--------------//
+	
+	
+	@GetMapping("/cancellaOpere")
+	public String cancellaOpere(Model model){
+		List<Opera> opere = (List<Opera>)operaService.findAll();
+		model.addAttribute("opere", opere);
+		return "opereRimovibili";
+	}
+	
+	
+	//---------------//
+	@GetMapping("/rimuoviOpera")
+	public String rimuoviOpera(Model model, @RequestParam("id") Long id){
+		operaService.delete(id);
+		List<Opera> opere = (List<Opera>) operaService.findAll();
+		model.addAttribute("opere", opere);
+		return "opereRimovibili";
+	}
+	
+	
+	
+	
+	
 	
 	
 	

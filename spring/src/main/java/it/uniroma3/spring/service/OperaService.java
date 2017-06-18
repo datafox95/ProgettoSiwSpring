@@ -35,6 +35,12 @@ public class OperaService {
 		return this.operaRepo.findOne(id);
 	}
 
+	//cancella opera
+	public void delete(Long id) {
+		this.operaRepo.delete(id);
+		
+	}
+
 	
 	
 	
