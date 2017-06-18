@@ -22,12 +22,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 import it.uniroma3.spring.model.Artista;
 import it.uniroma3.spring.model.Opera;
 import it.uniroma3.spring.service.ArtistaService;
+import it.uniroma3.spring.service.OperaService;
 
 @Controller
 public class ArtistaController {
 
 	@Autowired
 	private ArtistaService artistaService;
+	
+	@Autowired
+	private OperaService operaService;
 	
 	//--------------//
 
@@ -105,6 +109,10 @@ public class ArtistaController {
 
 	
 	//--------------//
+	
+	
+	
+	
 
 
 }
