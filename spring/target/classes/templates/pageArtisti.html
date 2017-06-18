@@ -98,19 +98,19 @@ width: 100%; height:100%; overflow:scroll;
   <a href="/opere">Opere </a>
 </div>
 
+	
+		
+		<p>I nostri artisti:</p>
+		
 	<table>
-		<tr>
-			<td><p>Scopri tutto sugli artisti pi&uacute; famosi della storia. Dai uno sguardo anche alle loro opere</p></td>
-		</tr>
-		<tr>
-			<td><br></br><a href ="/listaArtisti">I NOSTRI ARTISTI </a></td>
-		</tr>
+		<th:foreach th:each="artista: ${artisti}">
+			<tr><td><a th:text="${artista.nome + ' ' + artista.cognome}"
+				th:href="@{/mostraAutore?(id=${artista.id})}"></a><br></br><br></br></td></tr>
+		</th:foreach>
 	</table>
+	
 	<table>
-		<tr><td><p>Per aggiungere un nuovo artista devi essere un amministratore.</p>
-				<p>Se sei un amministratore aggiungi nuovi artisti cliccando sul link in basso</p>
-
-		</td></tr>
+		<tr><td><p>Opzioni di gestione artisti:</p></td></tr>
 		
 		<tr>
 			<td><a href="/addArtista">Aggiungi nuovo artista</a></td>

@@ -33,7 +33,7 @@ public class OperaController {
 	private StanzaService stanzaService; 
 	
 	
-	@GetMapping("/opere")
+	@GetMapping(value={"/opere", "/pageOpere"})
 	public String showOpere(Model model){
 		List<Opera> opere = (List<Opera>) operaService.findAll();
 		model.addAttribute("opere", opere);
@@ -90,9 +90,6 @@ public class OperaController {
 		model.addAttribute("opera", opera);
 		return "mostraOpera";
 	}
-	
-	
-	
 	
 	
 	

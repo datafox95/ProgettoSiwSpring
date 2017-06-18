@@ -68,6 +68,12 @@ public class StanzaController {
 	}
 	
 	
+	//--------//
+	@GetMapping("/pageStanze")
+	public String showPage(){
+		return "pageStanze";
+	}
+	
 	
 	
 	

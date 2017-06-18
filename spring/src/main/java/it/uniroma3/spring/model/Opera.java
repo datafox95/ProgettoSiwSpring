@@ -40,9 +40,11 @@ public class Opera {
 	@Min(1)
 	private Integer anno;
 	
+	@NotNull
 	@ManyToOne(cascade = CascadeType.MERGE)
 	private Artista artista;
 	
+	@NotNull
 	@ManyToOne(optional=true)
 	private Stanza stanza;
 	

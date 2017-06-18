@@ -18,7 +18,6 @@ h1{
 a.nuovaStanza{
 	text-decoration: none;
 	color: orange;
-	text-transform: uppercase;
 }
 
 p{
@@ -77,14 +76,17 @@ body {
 
 html { width: 100%; height:100%; overflow:scroll; }
 
+a.nomeStanza{
+	color:orange;
 
+}
 
 
 
 </style>
 </head>
 <div class="title">
-<h1>Esposizioni: </h1>
+<h1>Esposizioni </h1>
 </div>
 <body>
 <div class="topnav">
@@ -95,16 +97,17 @@ html { width: 100%; height:100%; overflow:scroll; }
   <a href="/stanze">Stanze </a>
    <a href="/opere">Opere </a>
 </div>
+<p>Le nostre esposizioni:</p>
 <table>
 	<th:foreach th:each="stanza: ${stanze}">
 		<tr><td><h2>
-			<a th:text="${stanza.nomeStanza}" th:href="@{/mostraStanza?(id=${stanza.id})}"></a>
+			<a class="nomeStanza"   th:text="${stanza.nomeStanza}" th:href="@{/mostraStanza?(id=${stanza.id})}"></a>
 		</h2></td></tr>
 	</th:foreach>
 </table>
 
 <table>
-<tr><td><p>Per creare una nuova esposizione cliccare sul link qui sotto: </p></td></tr>
+<tr><td><p>Gestione delle seposizioni: </p></td></tr>
 <tr><td><a class="nuovaStanza" href ="/addStanza">Crea nuova esposizione</a></td></tr>
 
 </table>

@@ -47,8 +47,10 @@ public class ArtistaController {
 	//--------------//
 
 
-	@GetMapping("/artisti")
-	public String showPage() {
+	@GetMapping(value = {"/artisti" , "/pageArtisti"})
+	public String showPage(Model model) {
+		List<Artista> artisti = (List<Artista>) artistaService.findAll();
+		model.addAttribute("artisti", artisti);
 		return "pageArtisti";
 	}
 
@@ -89,14 +91,7 @@ public class ArtistaController {
 	
 	//--------------//
 
-	@GetMapping("/listaArtisti")
-	public String mostraLista(Model model){
-		List<Artista> artisti = (List<Artista>) artistaService.findAll();
-		model.addAttribute("artisti", artisti);
-		return "listaArtisti"; //
-	}
 
-	//--------------//
 	
 	@GetMapping("/mostraAutore")
 	public String showAutore(@RequestParam("id")long id, Model model){
