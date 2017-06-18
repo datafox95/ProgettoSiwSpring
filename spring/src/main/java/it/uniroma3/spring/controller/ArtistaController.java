@@ -105,7 +105,22 @@ public class ArtistaController {
 	
 	//--------------//
 	
+	@GetMapping("/cancellaArtisti")
+	public String rimuoviArtista(Model model){
+		List<Artista> artisti = (List<Artista>)artistaService.findAll();
+		model.addAttribute("artisti", artisti);
+		return "artistiRimovibili";
+	}
 	
+	//--------//
+	@GetMapping("/cancellaArtista")
+	public String rimuoviArtista(Model model, @RequestParam("id") Long id){
+		artistaService.delete(id);
+		List<Artista> autori = (List<Artista>) artistaService.findAll();
+		model.addAttribute("autori", autori);
+		return "artistiRimovibili";
+		
+	}
 	
 	
 
