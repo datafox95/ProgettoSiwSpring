@@ -43,6 +43,7 @@ public class ArtistaService {
 	}
 	
 	//cancella un artista
+	@Transactional
 	public void delete(Long id) {
 		this.artistaRepo.delete(id);
 

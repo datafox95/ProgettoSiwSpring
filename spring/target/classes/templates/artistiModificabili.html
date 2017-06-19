@@ -2,12 +2,14 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Lista degli artisti: opzioni di cancellazione</title>
+<title>Lista artisti: operazioni di modifica</title>
 <style type="text/css">
-	
 
-a.cancella{
-	color: red;
+
+
+
+a.modifica{
+	color: orange;
 	text-transform: uppercase;
 	text-decoration: underline;
 }
@@ -63,26 +65,29 @@ a.back{
 	
 }
 
+
 </style>
+
+
+
 </head>
 <body>
 <div class="title">
-<h1>Cancellazione artisti:</h1>
+<h1>Pagina modifica artisti:</h1>
 </div>
 <table>
 <th:foreach th:each="artista: ${artisti}">
 			<tr>
 			<td><a class="artista"  th:text="${artista.cognome}" th:href="@{/mostraAutore?(id=${artista.id})}"></a></td>
 			<td><p>-</p></td>
-			<td><a class="cancella" th:href="@{/cancellaArtista(id=${artista.id})}">Cancella</a></td>
+			<td><a class="modifica" th:href="@{/modificaArtista(id=${artista.id})}">Edit</a></td>
 			</tr>
 </th:foreach>
 </table>
-<table>
-<tr><td><a class="back" href="/pageArtisti">Vai alla pagina degli artisti</a></td></tr>
-</table>
-<table>
-<tr><td><a class="back" href="/areaRiservata">Torna all'area riservata</a></td></tr>
-</table>
+
+
+<a class="back"  href="/pageArtisti">Torna alla pagina degli artisti</a>
+<a class="back"  href="/pageArtisti">Torna all'area riservata</a>
+
 </body>
 </html>

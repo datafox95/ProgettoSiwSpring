@@ -34,6 +34,11 @@ public class StanzaService {
 		return this.stanzaRepo.findOne(id);
 	}
 
+	//cancella una stanza 
+	public void delete(Long id) {
+		this.stanzaRepo.delete(id);
+		
+	}
 
 
 

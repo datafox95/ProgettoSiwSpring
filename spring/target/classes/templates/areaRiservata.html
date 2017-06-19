@@ -2,80 +2,74 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Opere della galleria</title>
+<title>Area riservata</title>
 <style type="text/css">
-	
-
-
-a.addOpera{
-
-	
-	color: orange;
-
-}
-
 
 h1{
-	display: inline-block;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: left;
-    color: white;
-
+	text-transform: uppercase;
+	color: white;
 }
 
-p{
+h2{
+	text-transform: uppercase;
 	color: white;
 }
 
 
+h3{
+	text-transform: uppercase;
+	color: white;
+}
+
+
+table{
+	margin-left: auto;
+	margin-right: auto;
+}
+
+p{
+	color: black;
+	text-transform: uppercase;
+	background-color: orange;
+	font-family: sans-serif;
+}
+
+a{
+
+	text-transform: uppercase;
+	color: white;
+	font-family: sans-serif;
+}
+
+div.options{
+	display: block;
+    text-align: center;
+}
+
+div.title{
+    display: block;
+    text-align: center;
+    background-color: red;
+
+}
+div.advice{
+    display: block;
+    text-align: center;
+    background-color: green;
+
+}
+
+a.home{
+	text-transform: uppercase;
+	color:orange;
+	text-decoration: none;
+	
+
+}
+	
 body {
 	
 	margin:0;
-}
-
-div.title{
-    display: block;
-    text-align: center;
-    background-color: orange;
-
-}
-
-.topnav {
-  overflow: hidden;
-  background-color: #333;
-}
-
-.topnav a {
-  float: left;
-  display: block;
-  color: #f2f2f2;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  font-size: 17px;
-}
-
-div.title{
-    display: block;
-    text-align: center;
-    background-color: orange;
-
-}
-
-.topnav a:hover {
-  background-color: #ddd;
-  color: black;
-}
-
-.topnav a.active {
-    background-color: #4CAF50;
-    color: white;
-}
-
-a.opere{
-
-	color:orange;
 }
 
 body { 
@@ -91,31 +85,58 @@ body {
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3E1D6D', endColorstr='#092756',GradientType=1 );
 }
 
-html { width: 100%; height:100%; overflow:scroll; }
+html { width: 100%; height:100%; overflow:hidden; }
 
+div.goBack{
+	padding-top: 100px ;
+   	display: block;
+    text-align: center;
+}
 
 </style>
 </head>
 <body>
 <div class="title">
-<h1>Opere</h1>
+<h1>! Area riservata !</h1>
+
+
 </div>
-<div class="topnav">
-  <a class="active" href="/">Home</a>
-  <a href="/login">Login</a>
-  <a href="/artisti">Artisti</a>
-  <a href="/stanze">Stanze </a>
-  <a href="/opere">Opere </a>
-  <a href="/areaRiservata">Area riservata</a>
+<div class="advice">
+<h2>Quest'area è riservata solo agli amministratori della galleria</h2>
+<h3>Di seguito le opzioni di gestione della galleria</h3>
+
 </div>
-<p>Le nostre opere:</p>
+
+
+<div class="options">
+
+<p>Opzioni artista:</p>
 <table>
-	<th:foreach th:each="opera: ${opere}">
-		<tr><td><h2>
-			<a class="opere" th:text="${opera.titolo}" th:href="@{/mostraOpera?(id=${opera.id})}"></a>
-		</h2></td></tr>
-	</th:foreach>
+	<tr><td><a href="/addArtista">Aggiungi un artista</a></td></tr>
+	<tr><td><a href="/cancellaArtisti">Cancellazione di un artista</a></td></tr>
+	<tr><td><a href="/modificaArtisti">Modifica di un artista</a></td></tr>
 </table>
+
+<p>Opzioni opera:</p>
+<table>
+	<tr><td><a href="/addOpera">Aggiungi opera</a></td></tr>
+	<tr><td><a href="/cancellaOpere">Cancellazione di un'opera</a></td></tr>
+</table>
+<p>Opzioni stanza:</p>
+<table>
+	<tr><td><a href="/cancellaStanze">Cancellazione di una stanza</a></td></tr>
+</table>
+<p>Opzioni admin:</p>
+<table>
+	<tr><td><a href="/addAdmin">Aggiungi un amministratore</a></td></tr>
+</table>
+</div>
+<div class="goBack">
+<a class="home"  href="/">Vai alla galleria</a>
+</div>
+
+
+
 
 </body>
 </html>

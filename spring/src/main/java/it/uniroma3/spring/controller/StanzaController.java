@@ -84,6 +84,28 @@ public class StanzaController {
 		return "pageStanze";
 	}
 	
+	//--------//
+	
+	//Vai alla pagina di rimozione stanze
+	@GetMapping("/cancellaStanze")
+	public String cancellaStanze(Model model){
+		List<Stanza> stanze = (List<Stanza>)stanzaService.findAll();
+		model.addAttribute("stanze", stanze);
+		return "stanzeRimovibili"; // 
+	}
+	
+	//--------//
+	
+	
+	@GetMapping("/rimuoviStanza")
+	public String rimuoviOpera(Model model, @RequestParam("id") Long id){
+		stanzaService.delete(id);
+		List<Stanza> stanze = (List<Stanza>) stanzaService.findAll();
+		model.addAttribute("stanze", stanze);
+		return "stanzeRimovibili";
+	}
+	
+	
 	
 	
 	

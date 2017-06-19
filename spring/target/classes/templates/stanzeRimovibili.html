@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Lista degli artisti: opzioni di cancellazione</title>
+<title>Lista delle stanze: opzioni di cancellazione</title>
 <style type="text/css">
 	
 
@@ -12,7 +12,7 @@ a.cancella{
 	text-decoration: underline;
 }
 
-a.artista{
+a.stanza{
 	color:white;
 	text-transform: uppercase;
 }
@@ -67,19 +67,19 @@ a.back{
 </head>
 <body>
 <div class="title">
-<h1>Cancellazione artisti:</h1>
+<h1>Cancellazione stanze:</h1>
 </div>
 <table>
-<th:foreach th:each="artista: ${artisti}">
+<th:foreach th:each="stanza: ${stanze}">
 			<tr>
-			<td><a class="artista"  th:text="${artista.cognome}" th:href="@{/mostraAutore?(id=${artista.id})}"></a></td>
+			<td><a class="stanza"  th:text="${stanza.nomeStanza}" th:href="@{/mostraStanza?(id=${stanza.id})}"></a></td>
 			<td><p>-</p></td>
-			<td><a class="cancella" th:href="@{/cancellaArtista(id=${artista.id})}">Cancella</a></td>
+			<td><a class="cancella" th:href="@{/rimuoviStanza(id=${artista.id})}">Cancella</a></td>
 			</tr>
 </th:foreach>
 </table>
 <table>
-<tr><td><a class="back" href="/pageArtisti">Vai alla pagina degli artisti</a></td></tr>
+<tr><td><a class="back" href="/pageStanze">Vai alla pagina delle stanze</a></td></tr>
 </table>
 <table>
 <tr><td><a class="back" href="/areaRiservata">Torna all'area riservata</a></td></tr>

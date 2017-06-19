@@ -4,13 +4,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name = "utenti")
-public class Utente {
+@Table(name = "admin")
+public class Admin {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -24,12 +25,16 @@ public class Utente {
 	@Size(min=1)
 	private String password; //password dell'utente
 	
+	@OneToOne
+	private RuoloAdmin ruolo;
+	
 	
 	/*costruttore vuoto*/
-	public Utente (){}
+	public Admin (){}
 	
 	/*costruttore*/
-	public Utente(String username, String password){
+	public Admin(String username, String password){
+		this.ruolo = new RuoloAdmin(username);
 		this.username = username;
 		this.password = password;
 	}
@@ -52,6 +57,14 @@ public class Utente {
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public RuoloAdmin getRuolo() {
+		return ruolo;
+	}
+
+	public void setRuolo(RuoloAdmin ruolo) {
+		this.ruolo = ruolo;
 	}
 	
 	

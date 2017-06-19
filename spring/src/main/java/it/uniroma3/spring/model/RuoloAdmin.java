@@ -9,8 +9,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "ruoli_utente")
-public class RuoloUtente {
+@Table(name = "ruoli_admin")
+public class RuoloAdmin {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -21,16 +21,16 @@ public class RuoloUtente {
 	private String ruolo;
 
 	@NotNull
-	@Column(name="nome utente")
+	@Column(name="nome_admin")
 	private String nome;
 
-	public RuoloUtente(){
-		this.ruolo = "ROLE_USER";
+	public RuoloAdmin(){
+		this.ruolo = "ADMIN_USER";
 	}
 
-	public RuoloUtente(String nome){
+	public RuoloAdmin(String nome){
 		this.nome = nome;
-		this.ruolo = "ROLE_USER";
+		this.ruolo = "ADMIN_USER";
 	}
 
 	public Long getId() {

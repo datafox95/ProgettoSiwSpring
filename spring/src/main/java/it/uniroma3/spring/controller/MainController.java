@@ -10,15 +10,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import it.uniroma3.spring.model.Utente;
-import it.uniroma3.spring.service.UtenteService;
+import it.uniroma3.spring.model.Admin;
+import it.uniroma3.spring.service.AdminService;
 
 @Controller
 public class MainController {
 
 	//Dipendenze
 	@Autowired
-	private UtenteService us;
+	private AdminService as;
 
 	
 	//--------------//
@@ -32,26 +32,34 @@ public class MainController {
 	//--------------//
 	
 	//Mostra la form per l'inserimento di un nuovo utente
-	@GetMapping("/register")
-	public String showForm(Utente utente){
+	@GetMapping("/addAdmin")
+	public String showForm(Admin admin){
 		return "form";
 	}
 	
 	//--------------//
 	
 	//Verifica la correttezza dei dati del nuovo utente e mostra la pagina con i dati ineriti dall'utente
-	@PostMapping("/register")
-	public String signUp(@Valid @ModelAttribute Utente utente, 
+	@PostMapping("/addAmin")
+	public String signUp(@Valid @ModelAttribute Admin admin, 
 			BindingResult bindingResult, Model model){
 		if (bindingResult.hasErrors()) {
 			return "form"; //
 		}
 		else {
-			model.addAttribute(utente);
-			us.add(utente); 
+			model.addAttribute(admin);
+			as.add(admin); 
 			
 		}
-		return "mostraUtente"; //
+		return "mostraAdmin"; //
+	}
+	
+	
+	//----------//
+	//Accedi all'area riservata
+	@GetMapping("/areaRiservata")
+	public String showReservedArea(){
+		return "areaRiservata";
 	}
 	
 	

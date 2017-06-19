@@ -25,30 +25,30 @@ import it.uniroma3.spring.service.ArtistaService;
 
 @Controller
 public class ArtistaController {
-	
+
 	//Dipendenze 
 	@Autowired
 	private ArtistaService artistaService;
-	
-	
-	
-	
+
+
+
+
 	//--------------//
 
-    
+
 	//Controllo del formato di una qualsiasi data
-	
+
 	@InitBinder
 	public void dataBinding(WebDataBinder binder) {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 		dateFormat.setLenient(true);
 		binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
 	}	
-	
-	
+
+
 	//--------------//
 
-	
+
 	//Mostra la pagina relativa agli artisti con le operazioni di gestione
 
 	@GetMapping(value = {"/artisti" , "/pageArtisti"})
@@ -59,18 +59,18 @@ public class ArtistaController {
 	}
 
 	//--------------//
-	
+
 	//Mostra la form per l'inserimento di un nuovo artista
-	
+
 	@GetMapping("/addArtista")
 	public String showForm(Artista artista){
 		return "formArtista";
 	}
-	
+
 	//--------------//
-	
+
 	//Verifica la correttezza della form e mostra la pagina relativa ai dati inseriti 
-	
+
 	@PostMapping("/addArtista")
 	public String checkArtista(@Valid @ModelAttribute Artista artista, 
 			BindingResult bindingResult, Model model) {
@@ -96,12 +96,12 @@ public class ArtistaController {
 		return "datiArtista";
 	}
 
-	
+
 	//--------------//
 
 
 	//Mostra i dati relativi ad un autore identificato da un certo id e le sue relative opere
-	
+
 	@GetMapping("/mostraAutore")
 	public String showAutore(@RequestParam("id")long id, Model model){
 		Artista artista = artistaService.findbyId(id);
@@ -111,31 +111,90 @@ public class ArtistaController {
 		return "mostraAutore";
 	}
 
-	
+
 	//--------------//
-	
+
 	//Mostra la pagina per la cancellazione di artisti visualizzandoli
-	
+
 	@GetMapping("/cancellaArtisti")
-	public String rimuoviArtista(Model model){
+	public String rimuoviArtisti(Model model){
 		List<Artista> artisti = (List<Artista>)artistaService.findAll();
 		model.addAttribute("artisti", artisti);
 		return "artistiRimovibili";
 	}
-	
+
 	//--------------//
-	
+
 	//Consente la cancellazione di un artista mostrando la pagina relativa alla cancellazione
-	
+
 	@GetMapping("/cancellaArtista")
 	public String rimuoviArtista(Model model, @RequestParam("id") Long id){
 		artistaService.delete(id);
 		List<Artista> autori = (List<Artista>) artistaService.findAll();
 		model.addAttribute("autori", autori);
 		return "artistiRimovibili";
-		
+
 	}
+
+
+	//---------------//
+
+	@GetMapping("/artistiModificabili")
+	public String showEditArtisti(){
+		return "artistiModificabili";
+	}
+
+	//---------------//
+
+	@GetMapping("/modificaArtisti")
+	public String modificaArtisti(Model model){
+		List<Artista> artisti = (List<Artista>)artistaService.findAll();
+		model.addAttribute("artisti", artisti);
+		return "artistiModificabili";
+	}
+
+	//---------------//
+
+	@GetMapping("/modificaArtista")
+	public String editArtisti(Model model, @RequestParam("id") Long id){
+		Artista artista = artistaService.findbyId(id);
+		model.addAttribute("artista", artista);
+		return "artistaDaModificare"; // pagina da fare
+	}
+
+	//---------------//
+
 	
+	@PostMapping("/artistaDaModificare")
+	public String editArtista(@Valid @ModelAttribute Artista artista, BindingResult bindingResult, Model model){
+
+		if (bindingResult.hasErrors()) {
+			return "artistaDaModificare";
+		}
+		else {
+			SimpleDateFormat df = new SimpleDateFormat("MM/dd/yyyy");
+			String dataNascita = df.format(artista.getDataNascita());
+			model.addAttribute("dataNascita", dataNascita);
+			if(artista.getDataMorte()!=null){
+				String dataMorte = df.format(artista.getDataMorte());
+				model.addAttribute("dataMorte", dataMorte);
+			}
+			artista.setNome(artista.getNome().toUpperCase());
+			model.addAttribute(artista);
+			try{
+				artistaService.add(artista);
+			}catch(Exception e){
+				return"artistaDaModificare";
+
+			}
+		}
+		return "mostraAutore";
+
+	}
+
+
+
+
 
 
 }

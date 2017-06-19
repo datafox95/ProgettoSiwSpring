@@ -78,8 +78,8 @@ html { width: 100%; height:100%; overflow:hidden; }
 </head>
     <body>
     <div class="form">
-        <h2> CREA UN NUOVO ACCOUNT </h2>
-        <form action="#" th:action="@{/register}" th:object="${utente}" method="post">
+        <h2> CREA UN NUOVO ADMIN </h2>
+        <form action="#" th:action="@{/addAmin}" th:object="${admin}" method="post">
             <table>
                 <tr>
                     <td><span th:text="#{label.username}">Username: </span></td>
