@@ -13,7 +13,7 @@ import javax.validation.constraints.NotNull;
 public class RuoloAdmin {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	@NotNull
@@ -25,12 +25,12 @@ public class RuoloAdmin {
 	private String nome;
 
 	public RuoloAdmin(){
-		this.ruolo = "ADMIN_USER";
+		this.ruolo = "ADMIN_ROLE";
 	}
 
 	public RuoloAdmin(String nome){
 		this.nome = nome;
-		this.ruolo = "ADMIN_USER";
+		this.ruolo = "ADMIN_ROLE";
 	}
 
 	public Long getId() {

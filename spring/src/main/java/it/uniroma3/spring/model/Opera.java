@@ -11,17 +11,16 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 @Table(name = "opera")
-public class Opera {
+public class Opera implements Comparable<Opera>{
 	
 	
 
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	@NotNull
@@ -52,7 +51,7 @@ public class Opera {
 	private Stanza stanza; //stanza in cui l'opera è esposta
 	
 	@NotNull
-	@Size(min=1)
+	@Size(min=1000)
 	private String UrlImmagine; //indirizzo url dell'immagine rappresentante l'opera
 	
 	/*costruttore vuoto */
@@ -153,6 +152,12 @@ public class Opera {
 
 	public void setLarghezza(Integer larghezza) {
 		this.larghezza = larghezza;
+	}
+
+
+	@Override
+	public int compareTo(Opera o) {
+		return this.titolo.toUpperCase().compareTo(o.titolo.toUpperCase());
 	}
 
 }

@@ -74,7 +74,7 @@ a.back{
 			<tr>
 			<td><a class="stanza"  th:text="${stanza.nomeStanza}" th:href="@{/mostraStanza?(id=${stanza.id})}"></a></td>
 			<td><p>-</p></td>
-			<td><a class="cancella" th:href="@{/rimuoviStanza(id=${artista.id})}">Cancella</a></td>
+			<td><a class="cancella" th:href="@{/rimuoviStanza(id=${stanza.id})}">Cancella</a></td>
 			</tr>
 </th:foreach>
 </table>

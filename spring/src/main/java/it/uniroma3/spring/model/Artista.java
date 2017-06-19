@@ -19,12 +19,12 @@ import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name = "artisti")
-public class Artista {
+@Table(name = "artista")
+public class Artista implements Comparable<Artista>{
 	
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	
@@ -51,7 +51,7 @@ public class Artista {
 	
 	
 	//politica di cascade: se un'artista è rimosso vengono rimosse anche le sue opere
-	@OneToMany(mappedBy ="artista" , cascade = CascadeType.REMOVE) 
+	@OneToMany(mappedBy ="artista" , cascade = CascadeType.ALL) 
 	private List<Opera> opere;   //opere dell'artista;
 	
 	@ManyToOne
@@ -71,6 +71,9 @@ public class Artista {
 		this.stanza = stanza;
 		
 	}
+	
+	
+	
 
 	/*Getters and setters */
 	
@@ -128,6 +131,11 @@ public class Artista {
 
 	public void setOpere(List<Opera> opere) {
 		this.opere = opere;
+	}
+
+	@Override
+	public int compareTo(Artista o) {
+		return this.getNome().toUpperCase().compareTo(o.getNome().toUpperCase());
 	}
 	
 	

@@ -15,11 +15,11 @@ import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "stanza")
-public class Stanza {
+public class Stanza implements Comparable<Stanza> {
 	
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	@NotNull
@@ -66,6 +66,11 @@ public class Stanza {
 	@Override
 	public String toString() {
 		return "Stanza [id=" + id + ", nomeStanza=" + nomeStanza + ", opere=" + opere + "]";
+	}
+
+	@Override
+	public int compareTo(Stanza o) {
+		return this.getNomeStanza().toUpperCase().compareTo(o.getNomeStanza().toUpperCase());
 	}
 
 }
