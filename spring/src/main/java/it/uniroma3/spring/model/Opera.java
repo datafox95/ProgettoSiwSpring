@@ -11,6 +11,8 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 @Entity
 @Table(name = "opera")
 public class Opera {
@@ -50,6 +52,7 @@ public class Opera {
 	private Stanza stanza; //stanza in cui l'opera è esposta
 	
 	@NotNull
+	@Size(min=1)
 	private String UrlImmagine; //indirizzo url dell'immagine rappresentante l'opera
 	
 	/*costruttore vuoto */
@@ -57,7 +60,7 @@ public class Opera {
 	
 	
 	/* costruttore*/
-	public Opera(String titolo, String tecnica, Integer lunghezza, Integer larghezza, Integer anno, Artista artista, Stanza stanza, String urlImmagine) {
+	public Opera(String titolo, String tecnica, Integer lunghezza, Integer larghezza, Integer anno, Artista artista, Stanza stanza, String UrlImmagine) {
 		super();
 		this.titolo = titolo;
 		this.tecnica = tecnica;
@@ -66,7 +69,7 @@ public class Opera {
 		this.anno = anno;
 		this.artista = artista;
 		this.stanza = stanza;
-		this.UrlImmagine = urlImmagine;
+		this.UrlImmagine = UrlImmagine;
 	}
 	
 
@@ -125,8 +128,8 @@ public class Opera {
 		return UrlImmagine;
 	}
 
-	public void setUrlImmagine(String urlImmagine) {
-		UrlImmagine = urlImmagine;
+	public void setUrlImmagine(String UrlImmagine) {
+		this.UrlImmagine = UrlImmagine;
 	}
 
 	@Override

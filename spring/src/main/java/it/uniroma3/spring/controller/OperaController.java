@@ -22,7 +22,7 @@ import it.uniroma3.spring.service.StanzaService;
 
 @Controller
 public class OperaController {
-	
+
 	//Dipendenze
 	@Autowired
 	private ArtistaService artistaService;
@@ -30,25 +30,25 @@ public class OperaController {
 	private OperaService operaService; 
 	@Autowired
 	private StanzaService stanzaService; 
-	
-	
+
+
 	//--------------//
-	
+
 	//Mostra la pagina relativa alle opere; la pagina mostra le opere inseritee le operazioni di gestione
-	
+
 	@GetMapping(value={"/opere", "/pageOpere"})
 	public String showOpere(Model model){
 		List<Opera> opere = (List<Opera>) operaService.findAll();
 		model.addAttribute("opere", opere);
 		return "pageOpere";
-		
+
 	}
-	
+
 	//--------------//
-	
+
 
 	//Mostra  la form per l'inserimento di una nuova opera
-	
+
 	@GetMapping("/addOpera")
 	public String showForm(Model model, Opera opera){
 		List<Artista> artisti = (List<Artista>)artistaService.findAll();
@@ -57,12 +57,12 @@ public class OperaController {
 		model.addAttribute("stanze", stanze);
 		return "formOpera";
 	}
-	
-	
+
+
 	//-------------//
-	
+
 	//Verifica la correttezza della form e mostra la pagina con i relativi dati
-	
+
 	@PostMapping("/addOpera")
 	public String checkOpera(@Valid @ModelAttribute Opera opera, 
 			BindingResult bindingResult, Model model , @RequestParam("artista") Artista artista) {
@@ -70,7 +70,7 @@ public class OperaController {
 		List<Stanza> stanze = (List<Stanza>) stanzaService.findAll();
 		model.addAttribute("stanze", stanze);
 
-		if (bindingResult.hasErrors() || artistaService.findbyId(artista.getId())== null ) {
+		if (bindingResult.hasErrors()) {
 			return "formOpera";
 		}
 		else {
@@ -78,40 +78,36 @@ public class OperaController {
 			artista.getOpere().add(opera);
 			model.addAttribute(artista);
 			model.addAttribute(opera);
-			if(opera.getStanza()==null){
-				model.addAttribute("nomeStanza","Opera non esposta."); //problema relativo alla mancanza di una stanza (bug)
-			}
-			else{
-				model.addAttribute("nomeStanza",opera.getStanza().getNomeStanza());
-				opera.getStanza().getOpere().add(opera);
-			}
-			operaService.add(opera); 
+			model.addAttribute("nomeStanza",opera.getStanza().getNomeStanza());
+			opera.getStanza().getOpere().add(opera);
 		}
+		operaService.add(opera); 
+
 		return "mostraOpera";
 	}
-	
+
 	//--------------//
-	
+
 	//Mostra i dati relativi ad una opera identificata dal proprio id
-	
+
 	@GetMapping("/mostraOpera")
 	public String showOpera(Model model ,@RequestParam("id") Long id ){
 		Opera opera = operaService.findbyId(id);
 		model.addAttribute("opera", opera);
 		return "mostraOpera";
 	}
-	
+
 	//--------------//
-	
-	
+
+
 	@GetMapping("/cancellaOpere")
 	public String cancellaOpere(Model model){
 		List<Opera> opere = (List<Opera>)operaService.findAll();
 		model.addAttribute("opere", opere);
 		return "opereRimovibili";
 	}
-	
-	
+
+
 	//---------------//
 	@GetMapping("/rimuoviOpera")
 	public String rimuoviOpera(Model model, @RequestParam("id") Long id){
@@ -120,13 +116,13 @@ public class OperaController {
 		model.addAttribute("opere", opere);
 		return "opereRimovibili";
 	}
-	
-	
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
+
+
 
 }

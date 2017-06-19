@@ -10,19 +10,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import it.uniroma3.spring.model.RuoloUtente;
 import it.uniroma3.spring.model.Utente;
-import it.uniroma3.spring.service.RuoloUtenteService;
 import it.uniroma3.spring.service.UtenteService;
 
 @Controller
 public class MainController {
 
 	//Dipendenze
-	@Autowired
-	private RuoloUtenteService rus;
-
 	@Autowired
 	private UtenteService us;
 
@@ -55,7 +49,7 @@ public class MainController {
 		else {
 			model.addAttribute(utente);
 			us.add(utente); 
-			rus.add(new RuoloUtente(utente.getUsername()));
+			
 		}
 		return "mostraUtente"; //
 	}

@@ -57,6 +57,10 @@ h2{
     
 }
 
+p{
+	color:white;
+	text-transform: uppercase;
+}
 
 
 body { 
@@ -90,52 +94,54 @@ a{
         <form action="#" th:action="@{/addOpera}" th:object="${opera}"  method="post">
         <table>
         	<tr>
-				<td><span th:text="#{label.stanza}">Stanza:</span></td>
-				<td>
-					<select th:field="*{stanza}">
+				<td><span th:text="#{label.stanza}">Stanza*:</span></td>
+				<td><select th:field="*{stanza}">
+					<option th:value="${null}">Non appartiene a nessuna esposizione</option>
 					<option th:each="stanza : ${stanze}" th:value="${stanza.id}" th:text="${stanza.nomeStanza}"></option>
 					</select>
-					<td><span th:if="${#fields.hasErrors('stanza')}" th:text="#{label.mandatory}">Error</span></td>
-				</td>
+					</td>
+					<td><span th:if="${#fields.hasErrors('stanza')}" th:text="#{label.Stanzamandatory}">Error</span></td>
+				
 			</tr>
             <tr>
-                    <td><span th:text="#{label.titolo}">Titolo: </span></td>
+                    <td><span th:text="#{label.titolo}">Titolo*: </span></td>
                     <td><span><input type="text" th:field="*{titolo}" /></span></td>
                     <td><span th:if="${#fields.hasErrors('titolo')}" th:text="#{label.mandatory}">Error</span></td>
             </tr>
             <tr>
-                    <td><span th:text="#{label.lunghezza}">Lunghezza: </span></td>
+                    <td><span th:text="#{label.lunghezza}">Lunghezza*: </span></td>
                     <td><span><input type="text" th:field="*{lunghezza}" /></span></td>
                     <td><span th:if="${#fields.hasErrors('lunghezza')}" th:text="#{label.number}">Error</span></td>
             </tr>
             <tr>
-                    <td><span th:text="#{label.larghezza}">Larghezza: </span></td>
+                    <td><span th:text="#{label.larghezza}">Larghezza*: </span></td>
                     <td><span><input type="text" th:field="*{larghezza}" /></span></td>
                     <td><span th:if="${#fields.hasErrors('larghezza')}" th:text="#{label.number}">Error</span></td>
             </tr>
             <tr>
-                    <td><span th:text="#{label.tecnica}">Tecnica: </span></td>
+                    <td><span th:text="#{label.tecnica}">Tecnica*: </span></td>
                     <td><span><input type="text" th:field="*{tecnica}" /></span></td>
                     <td><span th:if="${#fields.hasErrors('tecnica')}" th:text="#{label.mandatory}">Error</span></td>
             </tr>
             <tr>
-                    <td><span th:text="#{label.anno}">Anno: </span></td>
+                    <td><span th:text="#{label.anno}">Anno*: </span></td>
                     <td><span><input type="text" th:field="*{anno}" /></span></td>
                     <td><span th:if="${#fields.hasErrors('anno')}" th:text="#{label.number}">Error</span></td>
             </tr>
             <tr>
-				<td><span th:text="#{label.artista}">Artista:</span></td>
+				<td><span th:text="#{label.artista}">Artista*:</span></td>
 				<td>
 					<select th:field="*{artista}">
+					<option th:value="${null}">Nessun artista selezionato</option>
 					<option th:each="artista : ${artisti}" th:value="${artista.id}" th:text="${artista.cognome}"></option>
 					</select>
 				</td>
-				<td><span th:if="${#fields.hasErrors('artista')}" th:text="#{label.mandatory}">Error</span></td>
+				<td><span th:if="${#fields.hasErrors('artista')}" th:text="#{label.artistaMandatory}">Error</span></td>
 			</tr>
             <tr>
-                    <td><span th:text="#{label.urlImmagine}">Url Immagine: </span></td>
-                    <td><span><input type="text" th:field="*{urlImmagine}" /></span></td>
-                    <td><span th:if="${#fields.hasErrors('urlImmagine')}" th:text="#{label.mandatory}">Error</span></td>
+                    <td><span th:text="#{label.urlImmagine}">Url Immagine*: </span></td>
+                    <td><span><input type="text" th:field="*{UrlImmagine}" /></span></td>
+                    <td><span th:if="${#fields.hasErrors('UrlImmagine')}" th:text="#{label.mandatory}">Error</span></td>
             </tr>
             </table>
             <br></br>
@@ -143,6 +149,7 @@ a{
             <span><button class="resetbutton" type="reset">Reset</button></span>
         </form>
         </div>
+        <p>*Campo obbligatorio</p>
         <a href="/pageOpere"> Torna alla pagina delle opere </a>
     </body>
 </html>

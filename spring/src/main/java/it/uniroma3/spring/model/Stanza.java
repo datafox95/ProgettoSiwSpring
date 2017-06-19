@@ -35,7 +35,7 @@ public class Stanza {
 	public Stanza(){}
 	
 	/*costruttore*/
-	public Stanza(String nomeStanza, List<Artista> artisti, List<Opera> opere) {
+	public Stanza(String nomeStanza, List<Opera> opere) {
 		super();
 		this.nomeStanza = nomeStanza;
 		this.opere = new ArrayList<>();
