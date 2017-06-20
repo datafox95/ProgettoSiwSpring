@@ -36,6 +36,7 @@ public class OperaService {
 	}
 
 	//cancella opera
+	@Transactional
 	public void delete(Long id) {
 		this.operaRepo.delete(id);
 		

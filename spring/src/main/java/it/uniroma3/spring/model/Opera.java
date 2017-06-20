@@ -11,6 +11,8 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 
 @Entity
 @Table(name = "opera")
@@ -51,6 +53,7 @@ public class Opera{
 	private Stanza stanza; //stanza in cui l'opera è esposta
 	
 	@NotNull
+	@NotBlank
 	private String UrlImmagine; //indirizzo url dell'immagine rappresentante l'opera
 	
 	/*costruttore vuoto */
