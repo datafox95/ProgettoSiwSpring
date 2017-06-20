@@ -83,7 +83,7 @@ public class OperaController {
 		}
 		operaService.add(opera); 
 
-		return "mostraOpera";
+		return "ritornaOpera";
 	}
 
 	//--------------//

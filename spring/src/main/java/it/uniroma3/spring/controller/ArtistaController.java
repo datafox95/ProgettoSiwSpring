@@ -33,18 +33,6 @@ public class ArtistaController {
 
 
 
-	//--------------//
-
-
-	//Controllo del formato di una qualsiasi data
-
-	@InitBinder
-	public void dataBinding(WebDataBinder binder) {
-		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-		dateFormat.setLenient(true);
-		binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
-	}	
-
 
 	//--------------//
 
@@ -66,6 +54,23 @@ public class ArtistaController {
 	public String showForm(Artista artista){
 		return "formArtista";
 	}
+	
+	
+	
+	//--------------//
+
+
+		//Controllo del formato di una qualsiasi data
+
+		@InitBinder
+		public void dataBinding(WebDataBinder binder) {
+			SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+			dateFormat.setLenient(true);
+			binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
+		}	
+
+	
+	
 
 	//--------------//
 
@@ -137,16 +142,11 @@ public class ArtistaController {
 	}
 
 
-	//---------------//
-
-	@GetMapping("/artistiModificabili")
-	public String showEditArtisti(){
-		return "artistiModificabili";
-	}
+	
 
 	//---------------//
 
-	@GetMapping("/modificaArtisti")
+	@GetMapping(value={"/modificaArtisti"})
 	public String modificaArtisti(Model model){
 		List<Artista> artisti = (List<Artista>)artistaService.findAll();
 		model.addAttribute("artisti", artisti);
@@ -165,7 +165,7 @@ public class ArtistaController {
 	//---------------//
 
 	
-	@PostMapping("/artistaDaModificare")
+	@PostMapping("/modificaArtista")
 	public String editArtista(@Valid @ModelAttribute Artista artista, BindingResult bindingResult, Model model){
 
 		if (bindingResult.hasErrors()) {
@@ -175,12 +175,14 @@ public class ArtistaController {
 			SimpleDateFormat df = new SimpleDateFormat("MM/dd/yyyy");
 			String dataNascita = df.format(artista.getDataNascita());
 			model.addAttribute("dataNascita", dataNascita);
+			
 			if(artista.getDataMorte()!=null){
 				String dataMorte = df.format(artista.getDataMorte());
 				model.addAttribute("dataMorte", dataMorte);
 			}
 			artista.setNome(artista.getNome().toUpperCase());
 			model.addAttribute(artista);
+			
 			try{
 				artistaService.add(artista);
 			}catch(Exception e){
@@ -188,12 +190,17 @@ public class ArtistaController {
 
 			}
 		}
-		return "mostraAutore";
+		return "artistaModificato";
 
 	}
 
 
-
+	@GetMapping(value={"/artistiModificabili"})
+	public String showModifica(Model model){
+		List<Artista> artisti = (List<Artista>)artistaService.findAll();
+		model.addAttribute("artisti", artisti);
+		return "artistiModificabili";
+	}
 
 
 

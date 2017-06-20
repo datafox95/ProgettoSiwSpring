@@ -1,4 +1,4 @@
-package it.uniroma3.spring.security;
+/*package it.uniroma3.spring.security;
  
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -19,7 +19,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception {
 		auth.jdbcAuthentication().dataSource(dataSource)
 		.usersByUsernameQuery("select username,password from admin where username=?")
-		.authoritiesByUsernameQuery("select username, role from ruoli_admin where username=?");
+		.authoritiesByUsernameQuery("select nome_admin, ruolo from ruoli_admin where username=?");
+		
 	}
 
 	@Override
@@ -31,6 +32,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests().antMatchers("/areaRiservata").hasRole("ADMIN_ROLE")
 		.anyRequest().authenticated().and().formLogin().loginPage("/login").permitAll().and().logout()
 		.permitAll();
-		http.exceptionHandling().accessDeniedPage("/403");
+		
 	}
-}
+}*/

@@ -14,7 +14,7 @@ import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "opera")
-public class Opera implements Comparable<Opera>{
+public class Opera{
 	
 	
 
@@ -51,7 +51,6 @@ public class Opera implements Comparable<Opera>{
 	private Stanza stanza; //stanza in cui l'opera è esposta
 	
 	@NotNull
-	@Size(min=1000)
 	private String UrlImmagine; //indirizzo url dell'immagine rappresentante l'opera
 	
 	/*costruttore vuoto */
@@ -155,9 +154,5 @@ public class Opera implements Comparable<Opera>{
 	}
 
 
-	@Override
-	public int compareTo(Opera o) {
-		return this.titolo.toUpperCase().compareTo(o.titolo.toUpperCase());
-	}
 
 }

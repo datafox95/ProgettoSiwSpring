@@ -71,7 +71,7 @@ public class StanzaController {
 			model.addAttribute(stanza);
 			stanzaService.add(stanza);
 		}
-		return "mostraStanza";
+		return "ritornaStanza";
 	}
 	
 	

@@ -29,6 +29,15 @@ public class MainController {
 		return "login"; //
 	}
 	
+	
+	@PostMapping("/login")
+	public String login(@Valid @ModelAttribute Admin admin, BindingResult bindingResult, Model model){
+		if(bindingResult.hasErrors()){
+			return "login";
+		}else
+			return "/areaRiservata";
+	}
+	
 	//--------------//
 	
 	//Mostra la form per l'inserimento di un nuovo utente
@@ -40,7 +49,7 @@ public class MainController {
 	//--------------//
 	
 	//Verifica la correttezza dei dati del nuovo utente e mostra la pagina con i dati ineriti dall'utente
-	@PostMapping("/addAmin")
+	@PostMapping("/addAdmin")
 	public String signUp(@Valid @ModelAttribute Admin admin, 
 			BindingResult bindingResult, Model model){
 		if (bindingResult.hasErrors()) {

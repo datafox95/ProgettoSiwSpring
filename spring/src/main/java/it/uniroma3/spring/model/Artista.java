@@ -20,7 +20,7 @@ import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "artista")
-public class Artista implements Comparable<Artista>{
+public class Artista{
 	
 	
 	@Id
@@ -133,19 +133,6 @@ public class Artista implements Comparable<Artista>{
 		this.opere = opere;
 	}
 
-	@Override
-	public int compareTo(Artista o) {
-		return this.getNome().toUpperCase().compareTo(o.getNome().toUpperCase());
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 

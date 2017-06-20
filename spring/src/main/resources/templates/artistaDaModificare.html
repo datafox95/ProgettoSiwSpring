@@ -5,13 +5,130 @@
 <title>Artista da modificare</title>
 <style type="text/css">
 
+a{
+	color: orange;
+}
+
+p{
+	color:white;
+	text-transform: uppercase;
+}
+
+body { 
+	width: 100%;
+	height:100%;
+	font-family: 'Open Sans', sans-serif;
+	background: #092756;
+	background: -moz-radial-gradient(0% 100%, ellipse cover, rgba(104,128,138,.4) 10%,rgba(138,114,76,0) 40%),-moz-linear-gradient(top,  rgba(57,173,219,.25) 0%, rgba(42,60,87,.4) 100%), -moz-linear-gradient(-45deg,  #670d10 0%, #092756 100%);
+	background: -webkit-radial-gradient(0% 100%, ellipse cover, rgba(104,128,138,.4) 10%,rgba(138,114,76,0) 40%), -webkit-linear-gradient(top,  rgba(57,173,219,.25) 0%,rgba(42,60,87,.4) 100%), -webkit-linear-gradient(-45deg,  #670d10 0%,#092756 100%);
+	background: -o-radial-gradient(0% 100%, ellipse cover, rgba(104,128,138,.4) 10%,rgba(138,114,76,0) 40%), -o-linear-gradient(top,  rgba(57,173,219,.25) 0%,rgba(42,60,87,.4) 100%), -o-linear-gradient(-45deg,  #670d10 0%,#092756 100%);
+	background: -ms-radial-gradient(0% 100%, ellipse cover, rgba(104,128,138,.4) 10%,rgba(138,114,76,0) 40%), -ms-linear-gradient(top,  rgba(57,173,219,.25) 0%,rgba(42,60,87,.4) 100%), -ms-linear-gradient(-45deg,  #670d10 0%,#092756 100%);
+	background: -webkit-radial-gradient(0% 100%, ellipse cover, rgba(104,128,138,.4) 10%,rgba(138,114,76,0) 40%), linear-gradient(to bottom,  rgba(57,173,219,.25) 0%,rgba(42,60,87,.4) 100%), linear-gradient(135deg,  #670d10 0%,#092756 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3E1D6D', endColorstr='#092756',GradientType=1 );
+}
+
+html { width: 100%; height:100%; overflow:scroll; }
+
+
+div.title{
+    display: block;
+    text-align: center;
+    padding-top: 25px;
+}
+
+div.back{
+ display: block;
+    text-align: center;
+    padding-top: 25px;
+
+}
+
+span{
+    color: white;
+    font-family: sans-serif;
+    text-transform: uppercase;
+
+}
+
+h1{
+
+    background-color: orange;
+    color : white;
+    margin-right: 250px;
+    margin-left: 250px;
+    font-family: sans-serif;
+
+
+}
+
+div.form{
+    display: block;
+    text-align: center;
+    padding-top: 50px;
+}
+
+
+
+form{
+
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+    text-align: left;
+}
+
 </style>
 </head>
 <body>
+<div class="title">
+<h1>Artista da modificare :</h1>
+</div>
 
-
-
-
+<div class="form">
+<form action="#" th:action="@{/modificaArtista?(id=${artista.id})}" th:object="${artista}" method="post" >
+		
+<table>
+			
+				<tr>
+					<td><span th:text="#{label.nome}">Nome: </span></td>
+					<td><input type="text" th:field="*{nome}" placeholder="Nome" /></td>
+					<td><span  th:if="${#fields.hasErrors('nome')}" th:text="#{label.mandatory}">Error</span></td>
+				</tr>
+				
+				<tr>
+					<td><span th:text="#{label.cognome}">Cognome: </span></td>
+					<td><input type="text" th:field="*{cognome}" placeholder="Cognome" /></td>
+					<td><span  th:if="${#fields.hasErrors('cognome')}" th:text="#{label.mandatory}">Error</span></td>
+				</tr>
+			
+				<tr>
+					<td><span th:text="#{label.nazione}">Nazionalità: </span></td>
+					<td><input type="text" th:field="*{nazione}" placeholder="Nazionalità" /></td>
+					<td><span th:if="${#fields.hasErrors('nazione')}" th:text="#{label.mandatory}">Error</span></td>
+				</tr>
+			
+			
+				<tr>
+					<td><span th:text="#{label.dataNascita}">Data Nascita: </span></td>
+					<td><input type="text" th:field="*{dataNascita}" placeholder="Data Nascita" /></td>
+					<td><span th:if="${#fields.hasErrors('dataNascita')}" th:text="#{label.date}">Error</span></td>
+				</tr>
+			
+				<tr>
+					<td><span th:text="#{label.dataMorte}">Data Morte: </span></td>
+					<td><input type="text"  th:field="*{dataMorte}" placeholder="Completare solo se è possibile" /></td>
+					<td><span th:if="${#fields.hasErrors('dataMorte')}" th:text="#{label.date}">Error</span></td>
+				</tr>
+</table>
+<table>
+<tr><td><input class="editButton" type="submit" value="Edit"/></td></tr>
+</table>		
+</form>
+</div>
+<div class="back">
+<p>*Campo obbligatorio</p>
 <a class="back"  href="/artistiModificabili">Torna indietro</a>
+</div>
 </body>
 </html>

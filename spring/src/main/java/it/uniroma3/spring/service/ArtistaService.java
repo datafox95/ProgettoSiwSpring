@@ -24,12 +24,11 @@ public class ArtistaService {
 	        return this.artistaRepo.findAll();
 	    }
 	
-	 
-	 
+	
 	//salva un artista
 	@Transactional
-    public void add(final Artista customer) {
-        this.artistaRepo.save(customer);
+    public void add(final Artista artista) {
+        this.artistaRepo.save(artista);
     }
 	
 	//ricerca un artista tramite l'id e lo restituisce
